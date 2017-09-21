@@ -1,0 +1,29 @@
+https://github.com/anfgy001/swift-assignment1.git
+
+User Inputs: 
+
+Wheel Diameter
+Revolutions Per Minute (RPM)
+Target Distance - Assume KM
+
+Processing:
+Distance / ((pi * Diameter) / 60) * RPM) = Time
+
+Output: Time 
+IF Diameter is provided in metres, result = Time in seconds to travel the distance
+Time needs to be in milliseconds though!
+
+
+Say 
+Diameter = 1
+Distance = 1 
+RPM = 1
+
+Pi / 60 = 0.0524
+0.0524 x rpm = 0.0524
+1 / 0.05235987755983 = 19.09859317…
+
+
+RPM
+Distance
+Diameter = time
