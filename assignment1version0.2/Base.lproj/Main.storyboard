@@ -78,6 +78,9 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <state key="normal" title="Calculate"/>
+                                        <connections>
+                                            <action selector="calculateTime:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aoH-3C-dua"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
@@ -91,6 +94,11 @@
                             <constraint firstItem="dgo-4c-1ok" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="YSV-DQ-C1N"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="rpmTB" destination="Bjs-eS-atw" id="4MD-fO-x5u"/>
+                        <outlet property="targetDistanceTB" destination="qIq-cj-Qg5" id="BRw-Xc-YI6"/>
+                        <outlet property="wheelDiameterTB" destination="9Ab-lp-tbI" id="TqC-Gc-fxD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
