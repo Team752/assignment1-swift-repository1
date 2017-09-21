@@ -54,8 +54,7 @@ class ViewController: UIViewController {
         _ = UIAlertController(title: "Alert", message: userMessage, preferredStyle: .alert);
     }
     
-    
-    
+    // button function
     @IBAction func calculateTime(_ sender: UIButton)
     {
     
@@ -73,7 +72,7 @@ class ViewController: UIViewController {
         
         let theTime:Double? = timeCalculation(diameter: diameterDouble!, rpm: rpmDouble!, distance: targetDistanceDouble!);
         
-        print(theTime);
+        print(theTime!);
         
         let timeString = String(describing: theTime);
         
@@ -90,11 +89,9 @@ class ViewController: UIViewController {
         
         let time = distance / (piTimesDiameterAllDividedBy60 * rpm);
         
-        
         return time;
-        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
