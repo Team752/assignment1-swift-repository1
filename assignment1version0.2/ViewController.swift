@@ -10,6 +10,8 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var timeTB: UITextField!
+    
     @IBOutlet weak var wheelDiameterTB: UITextField!
     
     @IBOutlet weak var rpmTB: UITextField!
@@ -22,20 +24,16 @@ class ViewController: UIViewController {
     
     var targetDistanceDouble:Double?
     
-    // need to convert text fields
+    // NOTE: Conversions from .text to Double? WORK
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         displayAlert(userMessage: "test");
+        wheelDiameterTB.text = "1";
+        rpmTB.text = "1";
+        targetDistanceTB.text = "1";
     }
-    
-   /* func calculateTime(diameter: Double, rpm: Double, distance: Double) -> Double
-    {
-        
-        
-        return 0.0;
-    }   */
     
     func convertInputToDouble()
     {
@@ -63,15 +61,38 @@ class ViewController: UIViewController {
     
     
         convertInputToDouble();
-        displayAlert(userMessage: "test");
+        //displayAlert(userMessage: "test");
         print("clicked" + "\n");
+        if (rpmDouble != nil)
+        {
+            
+        }
+        else {
+            print("nil");
+        }
         
-    
+        let theTime:Double? = timeCalculation(diameter: diameterDouble!, rpm: rpmDouble!, distance: targetDistanceDouble!);
+        
+        print(theTime);
+        
+        let timeString = String(describing: theTime);
+        
+        timeTB.text = timeString;
     }
     
-    
-    func greet(person: String) {
-        print("Hello, \(person)!")
+    func timeCalculation(diameter: Double, rpm: Double, distance: Double) -> Double
+    {
+        // Time = Distance / ((pi * Diameter) / 60) * RPM)
+        let pi = M_PI;
+        
+        let piTimesDiameter = pi * diameter;
+        let piTimesDiameterAllDividedBy60 = piTimesDiameter / 60;
+        
+        let time = distance / (piTimesDiameterAllDividedBy60 * rpm);
+        
+        
+        return time;
+        
     }
 
     override func didReceiveMemoryWarning() {

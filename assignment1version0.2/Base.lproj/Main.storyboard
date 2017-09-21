@@ -24,8 +24,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dgo-4c-1ok">
                                 <rect key="frame" x="16" y="20" width="343" height="627"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Distance Calculator" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Up3-aY-LMa">
-                                        <rect key="frame" x="82" y="19" width="178" height="38"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Distance-Time Calculator" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Up3-aY-LMa">
+                                        <rect key="frame" x="58" y="18" width="227" height="38"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <nil key="textColor"/>
@@ -82,6 +82,21 @@
                                             <action selector="calculateTime:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aoH-3C-dua"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Time (Seconds)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DWj-A9-GUe">
+                                        <rect key="frame" x="8" y="519" width="121" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gPq-XT-xGw">
+                                        <rect key="frame" x="154" y="514" width="142" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                 </subviews>
                                 <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
                             </view>
@@ -97,6 +112,7 @@
                     <connections>
                         <outlet property="rpmTB" destination="Bjs-eS-atw" id="4MD-fO-x5u"/>
                         <outlet property="targetDistanceTB" destination="qIq-cj-Qg5" id="BRw-Xc-YI6"/>
+                        <outlet property="timeTB" destination="gPq-XT-xGw" id="0Ue-k5-pTj"/>
                         <outlet property="wheelDiameterTB" destination="9Ab-lp-tbI" id="TqC-Gc-fxD"/>
                     </connections>
                 </viewController>
