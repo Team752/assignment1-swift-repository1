@@ -12,6 +12,8 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var errorLabel: UILabel!
     
+    @IBOutlet weak var totalRevolutionsTB: UITextField!
+    
     @IBOutlet weak var timeTB: UITextField!
     
     @IBOutlet weak var wheelDiameterTB: UITextField!
@@ -27,6 +29,10 @@ class ViewController: UIViewController {
     var targetDistanceDouble:Double?
     
     var timeString:String = "";
+    
+    var wheelDiameterUnit:String = "";
+    
+    var TargetDistanceUnit:String = "";
     
     // NOTE: Conversions from .text to Double? WORK
     
@@ -142,8 +148,18 @@ class ViewController: UIViewController {
             
             timeTB.text = timeString;
             
+            let totalRevs = totalRevolutionsCalculation(rpm: rpmDouble!, timeInMs:theTime);
+            
+            let revsString = String(totalRevs);
+            
+            totalRevolutionsTB.text = revsString;
+            
+            
+            
             // IDEA: ROUND THE RESULT, IMPLEMENT LATER ON....
         }
+        
+        
         
         diameterDouble = nil;
         rpmDouble = nil;
@@ -166,9 +182,29 @@ class ViewController: UIViewController {
         let piTimesDiameter = pi * diameter;
         let piTimesDiameterAllDividedBy60 = piTimesDiameter / 60;
         
-        let time = distance / (piTimesDiameterAllDividedBy60 * rpm);
+        var time = distance / (piTimesDiameterAllDividedBy60 * rpm);
+        
+        // calculating to MS here, will need to be edited later on
+        time = time * 1000;
         
         return time;
+    }
+    
+    /*
+ 
+     Decided to scale up instead of down for performance purposes, 
+     using larger numbers would take more of a performance hit
+     
+    */
+    func totalRevolutionsCalculation(rpm: Double, timeInMs: Double) -> Double
+    {
+        
+        let timeInSeconds = timeInMs / 1000;
+        let timeInMinutes = timeInSeconds / 60;
+        
+        let finalRevolutions = rpm * timeInMinutes;
+        
+        return finalRevolutions;
     }
     
    
