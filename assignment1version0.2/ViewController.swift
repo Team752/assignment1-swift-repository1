@@ -26,6 +26,8 @@ class ViewController: UIViewController {
     
     var targetDistanceDouble:Double?
     
+    var timeString:String = "";
+    
     // NOTE: Conversions from .text to Double? WORK
     
     /*
@@ -37,9 +39,13 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         //displayAlert(userMessage: "test");
+        
         wheelDiameterTB.text = "1";
+        
         rpmTB.text = "1";
+        
         targetDistanceTB.text = "1";
+        
         errorLabel.isHidden = true;
     }
     
@@ -81,42 +87,27 @@ class ViewController: UIViewController {
             let targetDistanceConversion = Double(targetDistanceText!);
             
             
+            
+            
             if (diameterConversion == nil || rpmConversion == nil || targetDistanceConversion == nil)
             {
-                print("invalid number");
+                print("\n \n invalid number \n \n");
                 errorLabel.isHidden = false;
                 timeTB.backgroundColor = UIColor.red; //TODO: Test this
                 // break and redo
             }
             else
             {
-                diameterDouble = Double(diameterText!)!;
-                rpmDouble = Double(rpmText!)!;
-                targetDistanceDouble = Double(targetDistanceText!)!;
+                print("\n DIAMETER TEXT IS \(diameterText)");
+                diameterDouble = Double(diameterText!);
+                rpmDouble = Double(rpmText!);
+                targetDistanceDouble = Double(targetDistanceText!);
             }
-            
-            
-            
-            
         }
         
-        
-        
-        
-        
-        
-        
     }
     
     
-    /* NOT NEEDED
-    
-    func displayAlert(userMessage: String)
-    {
-        _ = UIAlertController(title: "Alert", message: userMessage, preferredStyle: .alert);
-    }
- 
- */
     
     // button function
     /*
@@ -130,27 +121,33 @@ class ViewController: UIViewController {
         
     
         convertInputToDouble();
-        print("clicked" + "\n");
-        
-        // doubles are nil when they don't work
-        // DO NOT CONVERT
         
         if (diameterDouble == nil || rpmDouble == nil || targetDistanceDouble == nil)
         {
             timeTB.text = "";
             // erroneous input
         }
-        else
+        else // input is all good
         {
-            let theTime:Double? = timeCalculation(diameter: diameterDouble!, rpm: rpmDouble!, distance: targetDistanceDouble!);
+            timeTB.backgroundColor = UIColor.lightText;
+            errorLabel.isHidden = true;
             
-            print(theTime!);
+            //let theTime:Double? = timeCalculation(diameter: diameterDouble!, rpm: rpmDouble!, distance: targetDistanceDouble!);
             
-            let timeString = String(describing: theTime);
+            let theTime = timeCalculation(diameter: diameterDouble!, rpm: rpmDouble!, distance: targetDistanceDouble!);
+        
+            //print(theTime!);
+            
+            timeString = String(theTime);
             
             timeTB.text = timeString;
+            
+            // IDEA: ROUND THE RESULT, IMPLEMENT LATER ON....
         }
         
+        diameterDouble = nil;
+        rpmDouble = nil;
+        targetDistanceDouble = nil;
         
     }
     
