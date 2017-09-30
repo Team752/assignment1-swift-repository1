@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "assignment1version0.2/ViewController.swift"
-            timestampString = "528181288.44801"
+            timestampString = "528425181.186325"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
             landmarkName = "ViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "assignment1version0.2/ViewController.swift"
-            timestampString = "528181288.44801"
+            timestampString = "528425181.186325"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
             landmarkName = "convertInputToDouble()"
             landmarkType = "7">
          </BreakpointContent>
@@ -42,13 +42,88 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "assignment1version0.2/ViewController.swift"
-            timestampString = "528181288.44801"
+            timestampString = "528425205.766347"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "148"
-            endingLineNumber = "148"
-            landmarkName = "calculateTime(_:)"
-            landmarkType = "7">
+            startingLineNumber = "5"
+            endingLineNumber = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "assignment1version0_2.ViewController.__deallocating_deinit"
+                  moduleName = "assignment1version0.2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anfgy001/Documents/assignment1-swift-repository1/assignment1version0.2/ViewController.swift"
+                  timestampString = "528425207.118696"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "assignment1version0_2.ViewController.init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; assignment1version0_2.ViewController"
+                  moduleName = "assignment1version0.2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anfgy001/Documents/assignment1-swift-repository1/assignment1version0.2/ViewController.swift"
+                  timestampString = "528425207.121692"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "60">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "assignment1version0_2.ViewController.__allocating_init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; assignment1version0_2.ViewController"
+                  moduleName = "assignment1version0.2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anfgy001/Documents/assignment1-swift-repository1/assignment1version0.2/ViewController.swift"
+                  timestampString = "528425207.123056"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "23">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "assignment1version0_2.ViewController.__allocating_init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;assignment1version0_2.ViewController&gt;"
+                  moduleName = "assignment1version0.2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anfgy001/Documents/assignment1-swift-repository1/assignment1version0.2/ViewController.swift"
+                  timestampString = "528425207.124287"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "assignment1version0_2.ViewController.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;assignment1version0_2.ViewController&gt;"
+                  moduleName = "assignment1version0.2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anfgy001/Documents/assignment1-swift-repository1/assignment1version0.2/ViewController.swift"
+                  timestampString = "528425207.125504"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "19">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
