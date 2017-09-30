@@ -162,9 +162,17 @@ class ViewController: UIViewController {
                 {
                     
                 }
-                else // diameter is only in metres
+                else // diameter is only in metres distance is in mm
                 {
                     bothDiameterAndDistanceSameUnit = false;
+                    
+                    // diameter = m
+                    // distance = mm
+                    // convert diameter to mm
+                    diameterDouble = diameterDouble! * 1000;
+                    print("distance double = \(targetDistanceDouble!) + diameter double = \(diameterDouble!)");
+                    bothDiameterAndDistanceSameUnit = true;
+
                 }
             }
             else // diameter isn't in metres
@@ -172,6 +180,12 @@ class ViewController: UIViewController {
                 if (distanceIsInMetres) // distance is in metres but diameter isn't
                 {
                     bothDiameterAndDistanceSameUnit = false;
+                    
+                    // diameter is in mm, distance in m
+                    // convert distance to mm
+                    targetDistanceDouble = targetDistanceDouble! * 1000;
+                    print("distance double = \(targetDistanceDouble!) + diameter double = \(diameterDouble!)");
+                    bothDiameterAndDistanceSameUnit = true;
                 }
                 else // both diameter and distance are not in metres -> will return time in seconds
                 {
