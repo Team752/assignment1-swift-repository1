@@ -149,6 +149,14 @@
                                             <action selector="diameterChange:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Oox-Ot-zVK"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0i0-0k-JIg">
+                                        <rect key="frame" x="106" y="65" width="131" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Convert to Imperial"/>
+                                        <connections>
+                                            <action selector="convertSystem:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yCh-1s-E7f"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
                             </view>
@@ -162,6 +170,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="conversionSystemButton" destination="0i0-0k-JIg" id="KnO-nh-bqT"/>
                         <outlet property="diameterChangeButton" destination="GXY-rQ-JQ7" id="Tco-MZ-PsF"/>
                         <outlet property="diameterUnit" destination="0bV-rR-EXv" id="hv5-C2-gAY"/>
                         <outlet property="distanceChangeButton" destination="IS9-yT-0I6" id="0qY-f2-zi8"/>

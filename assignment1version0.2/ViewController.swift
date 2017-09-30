@@ -13,6 +13,12 @@ class ViewController: UIViewController {
     var diameterIsInMetres:Bool = true;
     
     var distanceIsInMetres:Bool = true;
+    
+    var systemIsMetric:Bool = true;
+    
+    var diameterIsInYards:Bool = true;
+    
+    var distanceIsInYards:Bool = true;
 
     @IBOutlet weak var errorLabel: UILabel!
     
@@ -29,6 +35,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var diameterChangeButton: UIButton!
     
     @IBOutlet weak var distanceChangeButton: UIButton!
+    
+    @IBOutlet weak var conversionSystemButton: UIButton!
     
     @IBOutlet weak var diameterUnit: UILabel!
 
@@ -155,42 +163,89 @@ class ViewController: UIViewController {
             
             var bothDiameterAndDistanceSameUnit:Bool = true;
             
-            if (diameterIsInMetres)
+            if(!systemIsMetric) // system is imperial
             {
-                // both diameter and distance are in metres -> will return time in seconds
-                if (distanceIsInMetres)
+                if (diameterIsInYards)
                 {
-                    
+                    if(distanceIsInYards) // both in yards
+                    {
+                        print("distance double = \(targetDistanceDouble!) + diameter double = \(diameterDouble!)");
+                        
+                    }
+                    else // diameter yards, distance feet
+                    {
+                        bothDiameterAndDistanceSameUnit = false;
+                        
+                        // convert diameter to feet
+                        // 
+                        print("\n DIAMETER UNIT TEXT \(diameterUnit.text) \n DISTANCE UNIT TEXT \(distanceUnit.text) \n")
+                        targetDistanceDouble = targetDistanceDouble! / 3;
+                        print("distance double = \(targetDistanceDouble!) + diameter double = \(diameterDouble!)");
+                        bothDiameterAndDistanceSameUnit = true;
+                    }
                 }
-                else // diameter is only in metres distance is in mm
+                else // diameter is not in yards
                 {
-                    bothDiameterAndDistanceSameUnit = false;
-                    
-                    // diameter = m
-                    // distance = mm
-                    // convert diameter to mm
-                    diameterDouble = diameterDouble! * 1000;
-                    print("distance double = \(targetDistanceDouble!) + diameter double = \(diameterDouble!)");
-                    bothDiameterAndDistanceSameUnit = true;
-
+                    if(distanceIsInYards) // diameter feet, distance yards
+                    {
+                        // 1 yard is 3 feet
+                        print("\n DIAMETER UNIT TEXT \(diameterUnit.text) \n DISTANCE UNIT TEXT \(distanceUnit.text) \n")
+                        diameterDouble = diameterDouble! / 3;
+                        print("distance double = \(targetDistanceDouble!) + diameter double = \(diameterDouble!)");
+                        bothDiameterAndDistanceSameUnit = true;
+                    }
+                    else // distance, diameter feet
+                    {
+                        print("distance double = \(targetDistanceDouble!) + diameter double = \(diameterDouble!)");
+                    }
                 }
             }
-            else // diameter isn't in metres
+            else // system is metric
             {
-                if (distanceIsInMetres) // distance is in metres but diameter isn't
+                
+                
+                if (diameterIsInMetres)
                 {
-                    bothDiameterAndDistanceSameUnit = false;
-                    
-                    // diameter is in mm, distance in m
-                    // convert distance to mm
-                    targetDistanceDouble = targetDistanceDouble! * 1000;
-                    print("distance double = \(targetDistanceDouble!) + diameter double = \(diameterDouble!)");
-                    bothDiameterAndDistanceSameUnit = true;
+                    // both diameter and distance are in metres -> will return time in seconds
+                    if (distanceIsInMetres)
+                    {
+                        
+                    }
+                    else // diameter is only in metres distance is in mm
+                    {
+                        bothDiameterAndDistanceSameUnit = false;
+                        
+                        // diameter = m
+                        // distance = mm
+                        // convert diameter to mm
+                        diameterDouble = diameterDouble! * 1000;
+                        print("distance double = \(targetDistanceDouble!) + diameter double = \(diameterDouble!)");
+                        bothDiameterAndDistanceSameUnit = true;
+                        
+                    }
                 }
-                else // both diameter and distance are not in metres -> will return time in seconds
+                else // diameter isn't in metres
                 {
-                    
+                    if (distanceIsInMetres) // distance is in metres but diameter isn't
+                    {
+                        bothDiameterAndDistanceSameUnit = false;
+                        
+                        // diameter is in mm, distance in m
+                        // convert distance to mm
+                        targetDistanceDouble = targetDistanceDouble! * 1000;
+                        print("distance double = \(targetDistanceDouble!) + diameter double = \(diameterDouble!)");
+                        bothDiameterAndDistanceSameUnit = true;
+                    }
+                    else // both diameter and distance are not in metres -> will return time in seconds
+                    {
+                        
+                    }
                 }
+                
+                print("\n \(bothDiameterAndDistanceSameUnit)");
+                
+                
+
             }
             
             if (bothDiameterAndDistanceSameUnit)
@@ -207,7 +262,6 @@ class ViewController: UIViewController {
                 
                 totalRevolutionsTB.text = revsString;
             }
-        
             // IDEA: ROUND THE RESULT, IMPLEMENT LATER ON....
         }
         
@@ -221,35 +275,114 @@ class ViewController: UIViewController {
     
     @IBAction func diameterChange(_ sender: UIButton)
     {
-        if (diameterIsInMetres)
+        if (!systemIsMetric) // imperial - convert to foot or yard
         {
-            diameterUnit.text = "MM";
-            diameterChangeButton.setTitle("Change to M", for: .normal);
-            diameterIsInMetres = false;
+            print("system is imperial");
+            
+            if (diameterIsInYards) // convert to feet
+            {
+                diameterUnit.text = "FT";
+                diameterChangeButton.setTitle("Change to Y", for: .normal);
+                diameterIsInYards = false;
+            }
+            else // convert back to yards
+            {
+                diameterUnit.text = "Y";
+                diameterChangeButton.setTitle("Change to FT", for: .normal);
+                diameterIsInYards = true;
+            }
         }
         else
         {
-            diameterUnit.text = "M";
-            diameterChangeButton.setTitle("Change to MM", for: .normal);
-            diameterIsInMetres = true;
+            if (diameterIsInMetres)
+            {
+                diameterUnit.text = "MM";
+                diameterChangeButton.setTitle("Change to M", for: .normal);
+                diameterIsInMetres = false;
+            }
+            else
+            {
+                diameterUnit.text = "M";
+                diameterChangeButton.setTitle("Change to MM", for: .normal);
+                diameterIsInMetres = true;
+            }
+    
         }
+        
     }
     
     
     
     @IBAction func distanceChange(_ sender: Any)
     {
-        if (distanceIsInMetres)
+        
+        if(!systemIsMetric) // imperial - convert to foot or yard
         {
-            distanceUnit.text = "MM";
-            distanceChangeButton.setTitle("Change to M", for: .normal);
-            distanceIsInMetres = false;
+            if (distanceIsInYards) // convert to feet
+            {
+                distanceUnit.text = "FT";
+                distanceChangeButton.setTitle("Change to Y", for: .normal);
+                distanceIsInYards = false;
+            }
+            else // convert back to yards
+            {
+                distanceUnit.text = "Y";
+                distanceChangeButton.setTitle("Change to FT", for: .normal);
+                distanceIsInYards = true;
+            }
         }
         else
         {
+            if (distanceIsInMetres)
+            {
+                distanceUnit.text = "MM";
+                distanceChangeButton.setTitle("Change to M", for: .normal);
+                distanceIsInMetres = false;
+            }
+            else
+            {
+                distanceUnit.text = "M";
+                distanceChangeButton.setTitle("Change to MM", for: .normal);
+                distanceIsInMetres = true;
+            }
+        }
+        
+    }
+    
+    
+    @IBAction func convertSystem(_ sender: Any)
+    {
+        if (systemIsMetric) // convert to imperial
+        {
+            conversionSystemButton.setTitle("Convert to Metric", for: .normal);
+            diameterUnit.text = "Y";
+            distanceUnit.text = "Y";
+            diameterChangeButton.setTitle("Change to FT", for: .normal)
+            distanceChangeButton.setTitle("Change to FT", for: .normal)
+            
+            //diameterChangeButton.isHidden = true;
+            //distanceChangeButton.isHidden = true;
+            
+            distanceIsInYards = true;
+            diameterIsInYards = true;
+            
+            systemIsMetric = false;
+        }
+        else // convert back to metric
+        {
+            conversionSystemButton.setTitle("Convert to Imperial", for: .normal);
+            diameterUnit.text = "M";
             distanceUnit.text = "M";
-            distanceChangeButton.setTitle("Change to MM", for: .normal);
-            distanceIsInMetres = true;
+            diameterChangeButton.setTitle("Change to MM", for: .normal)
+            distanceChangeButton.setTitle("Change to MM", for: .normal)
+            
+            //diameterChangeButton.isHidden = false;
+            //distanceChangeButton.isHidden = false;
+            
+            //diameterIsInYards = false;
+            //distanceIsInYards = false; // NOT SURE
+            systemIsMetric = true;
+            
         }
     }
     
