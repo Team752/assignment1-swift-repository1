@@ -9,6 +9,10 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    var diameterIsInMetres:Bool = true;
+    
+    var distanceIsInMetres:Bool = true;
 
     @IBOutlet weak var errorLabel: UILabel!
     
@@ -21,6 +25,14 @@ class ViewController: UIViewController {
     @IBOutlet weak var rpmTB: UITextField!
 
     @IBOutlet weak var targetDistanceTB: UITextField!
+    
+    @IBOutlet weak var diameterChangeButton: UIButton!
+    
+    @IBOutlet weak var distanceChangeButton: UIButton!
+    
+    @IBOutlet weak var diameterUnit: UILabel!
+
+    @IBOutlet weak var distanceUnit: UILabel!
     
     var diameterDouble:Double?;
     
@@ -99,7 +111,8 @@ class ViewController: UIViewController {
             {
                 print("\n \n invalid number \n \n");
                 errorLabel.isHidden = false;
-                timeTB.backgroundColor = UIColor.red; //TODO: Test this
+                timeTB.backgroundColor = UIColor.red;
+                totalRevolutionsTB.backgroundColor = UIColor.red;
                 // break and redo
             }
             else
@@ -119,6 +132,7 @@ class ViewController: UIViewController {
     /*
      
      Action for button to calculate time given the double values of the inputs
+     The type of units distance and diameter have are determined here after user input validation for performance purposes
      
      
      */
@@ -136,26 +150,50 @@ class ViewController: UIViewController {
         else // input is all good
         {
             timeTB.backgroundColor = UIColor.lightText;
+            totalRevolutionsTB.backgroundColor = UIColor.lightText;
             errorLabel.isHidden = true;
             
-            //let theTime:Double? = timeCalculation(diameter: diameterDouble!, rpm: rpmDouble!, distance: targetDistanceDouble!);
+            var bothDiameterAndDistanceSameUnit:Bool = true;
             
-            let theTime = timeCalculation(diameter: diameterDouble!, rpm: rpmDouble!, distance: targetDistanceDouble!);
+            if (diameterIsInMetres)
+            {
+                // both diameter and distance are in metres -> will return time in seconds
+                if (distanceIsInMetres)
+                {
+                    
+                }
+                else // diameter is only in metres
+                {
+                    bothDiameterAndDistanceSameUnit = false;
+                }
+            }
+            else // diameter isn't in metres
+            {
+                if (distanceIsInMetres) // distance is in metres but diameter isn't
+                {
+                    bothDiameterAndDistanceSameUnit = false;
+                }
+                else // both diameter and distance are not in metres -> will return time in seconds
+                {
+                    
+                }
+            }
+            
+            if (bothDiameterAndDistanceSameUnit)
+            {
+                let theTime = timeCalculation(diameter: diameterDouble!, rpm: rpmDouble!, distance: targetDistanceDouble!);
+                
+                timeString = String(theTime);
+                
+                timeTB.text = timeString;
+                
+                let totalRevs = totalRevolutionsCalculation(rpm: rpmDouble!, timeInMs:theTime);
+                
+                let revsString = String(totalRevs);
+                
+                totalRevolutionsTB.text = revsString;
+            }
         
-            //print(theTime!);
-            
-            timeString = String(theTime);
-            
-            timeTB.text = timeString;
-            
-            let totalRevs = totalRevolutionsCalculation(rpm: rpmDouble!, timeInMs:theTime);
-            
-            let revsString = String(totalRevs);
-            
-            totalRevolutionsTB.text = revsString;
-            
-            
-            
             // IDEA: ROUND THE RESULT, IMPLEMENT LATER ON....
         }
         
@@ -165,6 +203,40 @@ class ViewController: UIViewController {
         rpmDouble = nil;
         targetDistanceDouble = nil;
         
+    }
+    
+    @IBAction func diameterChange(_ sender: UIButton)
+    {
+        if (diameterIsInMetres)
+        {
+            diameterUnit.text = "MM";
+            diameterChangeButton.setTitle("Change to M", for: .normal);
+            diameterIsInMetres = false;
+        }
+        else
+        {
+            diameterUnit.text = "M";
+            diameterChangeButton.setTitle("Change to MM", for: .normal);
+            diameterIsInMetres = true;
+        }
+    }
+    
+    
+    
+    @IBAction func distanceChange(_ sender: Any)
+    {
+        if (distanceIsInMetres)
+        {
+            distanceUnit.text = "MM";
+            distanceChangeButton.setTitle("Change to M", for: .normal);
+            distanceIsInMetres = false;
+        }
+        else
+        {
+            distanceUnit.text = "M";
+            distanceChangeButton.setTitle("Change to MM", for: .normal);
+            distanceIsInMetres = true;
+        }
     }
     
     /*
