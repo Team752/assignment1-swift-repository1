@@ -104,32 +104,49 @@ class ViewController: UIViewController {
         else
         {
             
-            let diameterText:String? = wheelDiameterTB.text;
-            let rpmText:String? = rpmTB.text;
-            let targetDistanceText:String? = targetDistanceTB.text;
+            var validation = validateInput();
             
-            let diameterConversion = Double(diameterText!);
-            let rpmConversion = Double(rpmText!);
-            let targetDistanceConversion = Double(targetDistanceText!);
-            
-            
-            
-            
-            if (diameterConversion == nil || rpmConversion == nil || targetDistanceConversion == nil)
-            {
-                print("\n \n invalid number \n \n");
-                errorLabel.isHidden = false;
-                timeTB.backgroundColor = UIColor.red;
-                totalRevolutionsTB.backgroundColor = UIColor.red;
-                // break and redo
-            }
-            else
-            {
-                print("\n DIAMETER TEXT IS \(diameterText)");
-                diameterDouble = Double(diameterText!);
-                rpmDouble = Double(rpmText!);
-                targetDistanceDouble = Double(targetDistanceText!);
-            }
+        }
+        
+    }
+    
+    //func co
+    
+    func validateInput() -> Bool
+    {
+        let diameterText:String? = wheelDiameterTB.text;
+        let rpmText:String? = rpmTB.text;
+        let targetDistanceText:String? = targetDistanceTB.text;
+        
+        let diameterConversion = Double(diameterText!);
+        let rpmConversion = Double(rpmText!);
+        let targetDistanceConversion = Double(targetDistanceText!);
+        
+        
+        
+        if (diameterConversion == nil || rpmConversion == nil || targetDistanceConversion == nil)
+        {
+            print("\n \n invalid number \n \n");
+            errorLabel.isHidden = false;
+            timeTB.backgroundColor = UIColor.red;
+            totalRevolutionsTB.backgroundColor = UIColor.red;
+            totalRevolutionsTB.text = "";
+            timeTB.text = ""
+            diameterDouble = nil;
+            rpmDouble = nil;
+            targetDistanceDouble = nil;
+            return false;
+            // break and redo
+        }
+        else // input is validated
+        {
+            errorLabel.isHidden = true;
+            diameterDouble = Double(diameterText!);
+            rpmDouble = Double(rpmText!);
+            targetDistanceDouble = Double(targetDistanceText!);
+            timeTB.backgroundColor = UIColor.lightText;
+            totalRevolutionsTB.backgroundColor = UIColor.lightText;
+            return true;
         }
         
     }
@@ -150,9 +167,10 @@ class ViewController: UIViewController {
     
         convertInputToDouble();
         
+        print("DIAMETER DOUBLE IS \(diameterDouble)");
         if (diameterDouble == nil || rpmDouble == nil || targetDistanceDouble == nil)
         {
-            timeTB.text = "";
+            print("ERROR INPUT HERE");
             // erroneous input
         }
         else // input is all good
@@ -241,11 +259,6 @@ class ViewController: UIViewController {
                         
                     }
                 }
-                
-                print("\n \(bothDiameterAndDistanceSameUnit)");
-                
-                
-
             }
             
             if (bothDiameterAndDistanceSameUnit)
@@ -352,36 +365,126 @@ class ViewController: UIViewController {
     
     @IBAction func convertSystem(_ sender: Any)
     {
+        // validate first
+        
+        
+        if (validateInput())
+        {
+            // valid input
+        }
+        else // invalid input, return button
+        {
+            print("Error: Input is not valid");
+            return;
+        }
+        
+        var diameterSystemConvert = Double(wheelDiameterTB.text!);
+        
+        var distanceSystemConvert = Double(targetDistanceTB.text!);
+        
+        var diameterDoubleConvert = diameterSystemConvert;
+        
+        var distanceDoubleConvert = distanceSystemConvert;
+        
         if (systemIsMetric) // convert to imperial
         {
+            
+            // check the current unit and convert to yards
+            if (distanceIsInMetres)
+            {
+                
+                // convert distance to yards
+                // 1 yard = 0.9144 metres
+                // 1 yard = 914.4 millimetres
+                
+                distanceDoubleConvert = distanceDoubleConvert! * 0.91440275783872;
+                
+                if (diameterIsInMetres) // distance, diameter M
+                {
+                    diameterDoubleConvert = diameterDoubleConvert! * 0.91440275783872;
+                }
+                else // distance M, diameter MM
+                {
+                    diameterDoubleConvert = diameterDoubleConvert! * 914.4;
+                }
+                
+            }
+            else // distance is in MM
+            {
+                print("Distance is in MM");
+                
+                distanceDoubleConvert = distanceDoubleConvert! * 914.4;
+                
+                if (diameterIsInMetres) // distance MM, diameter M
+                {
+                    diameterDoubleConvert = diameterDoubleConvert! * 0.91440275783872;
+                }
+                else // distance MM, diameter MM
+                {
+                    diameterDoubleConvert = diameterDoubleConvert! * 914.4;
+                }
+            }
+            
+            targetDistanceTB.text = String(distanceDoubleConvert!);
+            wheelDiameterTB.text = String(diameterDoubleConvert!);
+            
             conversionSystemButton.setTitle("Convert to Metric", for: .normal);
             diameterUnit.text = "Y";
             distanceUnit.text = "Y";
             diameterChangeButton.setTitle("Change to FT", for: .normal)
             distanceChangeButton.setTitle("Change to FT", for: .normal)
             
-            //diameterChangeButton.isHidden = true;
-            //distanceChangeButton.isHidden = true;
-            
             distanceIsInYards = true;
             diameterIsInYards = true;
             
             systemIsMetric = false;
+            print("Unit Measurement System has now been changed to Imperial");
         }
         else // convert back to metric
         {
+            if (distanceIsInYards)
+            {
+                // convert distance to metres
+                // 1 metre = 1.09361 yards
+                // 1 metre = 3.28084 feet
+                
+                distanceDoubleConvert = distanceDoubleConvert! * 1.0936132983371;
+                
+                if (diameterIsInYards) // distance, diameter in yards
+                {
+                    diameterDoubleConvert = diameterDoubleConvert! * 1.0936132983371;
+                }
+                else // distance yards, diameter ft
+                {
+                    diameterDoubleConvert = diameterDoubleConvert! * 3.28084;
+                }
+            }
+            else
+            {
+                distanceDoubleConvert = distanceDoubleConvert! * 3.28084;
+                
+                if (diameterIsInYards) // distance ft, diameter yard
+                {
+                    diameterDoubleConvert = diameterDoubleConvert! * 1.0936132983371;
+                }
+                else // distance, diameter ft
+                {
+                    diameterDoubleConvert = diameterDoubleConvert! * 3.28084;
+                }
+            }
+            
+            
+            targetDistanceTB.text = String(distanceDoubleConvert!);
+            wheelDiameterTB.text = String(diameterDoubleConvert!);
+            
             conversionSystemButton.setTitle("Convert to Imperial", for: .normal);
             diameterUnit.text = "M";
             distanceUnit.text = "M";
             diameterChangeButton.setTitle("Change to MM", for: .normal)
             distanceChangeButton.setTitle("Change to MM", for: .normal)
             
-            //diameterChangeButton.isHidden = false;
-            //distanceChangeButton.isHidden = false;
-            
-            //diameterIsInYards = false;
-            //distanceIsInYards = false; // NOT SURE
             systemIsMetric = true;
+            print("Unit Measurement System has now been changed to Metric");
             
         }
     }
