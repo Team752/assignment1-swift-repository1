@@ -35,6 +35,8 @@ class ViewController: UIViewController {
     
     var distanceIsInYards:Bool = true;
 
+    @IBOutlet weak var titleLabel: UILabel!
+    
     @IBOutlet weak var errorLabel: UILabel!
     
     @IBOutlet weak var totalRevolutionsTB: UITextField!
@@ -52,6 +54,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var distanceChangeButton: UIButton!
     
     @IBOutlet weak var conversionSystemButton: UIButton!
+    
+    @IBOutlet weak var calculateButton: UIButton!
     
     @IBOutlet weak var diameterUnit: UILabel!
 
@@ -74,6 +78,17 @@ class ViewController: UIViewController {
      */
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let screenSize = UIScreen.main.bounds;
+        let screenWidth = screenSize.width;
+        let screenHeight = screenSize.height;
+        
+        print("screen width is \(screenWidth) and screen height is \(screenHeight)");
+        
+        titleLabel.center.x = screenWidth / 2;
+        conversionSystemButton.center.x = screenWidth / 2;
+        calculateButton.center.x = screenWidth / 2;
+        errorLabel.center.x = screenWidth / 2;
         // Do any additional setup after loading the view, typically from a nib.
         wheelDiameterTB.text = "1";
         rpmTB.text = "1";
